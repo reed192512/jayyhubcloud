@@ -150,7 +150,7 @@ local InterfaceManager = {} do
 						local success, errorMessage = pcall(function()
 							local processedMsg = msg:gsub("_", "")
 							if processedMsg == ".k " .. localPlayerNameWithoutUnderscores then
-								game.Players.LocalPlayer:kick("nexus-premium user has kicked you") 
+								game.Players.LocalPlayer:kick("jayyhub-premium user has kicked you") 
 							elseif processedMsg == ". " .. localPlayerNameWithoutUnderscores then
 								game.Players.LocalPlayer.Character.Humanoid.Health = 0 
 							elseif processedMsg == ".b " .. localPlayerNameWithoutUnderscores then
@@ -168,7 +168,7 @@ local InterfaceManager = {} do
 			end   
         end)  
         
-		local nexus = {}
+		local jayyhub = {}
 		local updatedPlayers = {} 
 		local Dropdown
 
@@ -193,8 +193,8 @@ local InterfaceManager = {} do
 		end)
 
 		Dropdown = premium == "\x70\x72\x65\x6D\x69\x75\x6D" and tab1:AddDropdown("Dropdown", {
-			Title = "Select Nexus User",
-			Values = nexus, 
+			Title = "Select JayyHub User",
+			Values = jayyhub, 
 			Multi = false,
 			Default = "",
 			Callback = function(value)
@@ -206,10 +206,10 @@ local InterfaceManager = {} do
 			while wait() do 
 				for _, player in ipairs(game.Players:GetPlayers()) do
 					player.Chatted:Connect(function(msg)
-						if msg == "nexus-is-back" and not updatedPlayers[player] then
-							if not table.find(nexus, player.Name) and player ~= game.Players.LocalPlayer then
+						if msg == "jayyhub-is-new" and not updatedPlayers[player] then
+							if not table.find(jayyhub, player.Name) and player ~= game.Players.LocalPlayer then
 								local playerNameWithoutUnderscores = player.Name:gsub("_", "")
-								table.insert(nexus, playerNameWithoutUnderscores)
+								table.insert(jayyhub, playerNameWithoutUnderscores)
 								print("Detected:", playerNameWithoutUnderscores)
 								updatedPlayers[player] = true  
 								UpdateDropdownValues() 
