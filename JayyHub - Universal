@@ -1,7 +1,7 @@
 if getgenv().nexus then return end 
 
 local HttpService = game:GetService("HttpService")
-local fileName = "FLORENCE/SETTINGS/" .. game.PlaceId .. '.txt'
+local fileName = "JAYYHUB/SETTINGS/" .. game.PlaceId .. '.txt'
 getgenv().settings = {}
 getgenv().nexus = true
 
