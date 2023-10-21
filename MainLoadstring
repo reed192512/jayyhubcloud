@@ -16,7 +16,7 @@ local function loadScriptFromURL(url)
     if scriptContent then
         local success, result = pcall(loadstring(scriptContent))
         if not success then
-            loadstring(game:HttpGet('https://raw.githubusercontent.com/13B8B/nexus/main/universal.lua'))()
+            loadstring(game:HttpGet('https://raw.githubusercontent.com/reed192512/jayyhubcloud/main/JayyHub%20-%20Universal'))()
         end
     end
 end
