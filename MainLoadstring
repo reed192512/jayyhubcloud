@@ -24,7 +24,7 @@ end
 -- Check if the current place ID is in the SlapBattleIds list
 if table.find(SlapBattleIds, game.PlaceId) then
     getgenv().nexus = true
-    loadScriptFromURL('https://raw.githubusercontent.com/reed192512/modules/main/10714365287.lua')
+    loadScriptFromURL('https://raw.githubusercontent.com/reed192512/modules/main/6403373529.lua')
 else
     if not getgenv().nexus then
         getgenv().nexus = true
