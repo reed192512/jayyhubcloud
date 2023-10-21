@@ -1,4 +1,4 @@
-if getgenv().nexus then return end 
+if getgenv().jayyhub then return end 
 
 local HttpService = game:GetService("HttpService")
 local fileName = "JAYYHUB/SETTINGS/" .. game.PlaceId .. '.txt'
