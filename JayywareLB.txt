@@ -1,0 +1,177 @@
+local JayywareLibrary = {}
+
+local function createUiCorner(element)
+    local uiCorner = Instance.new("UICorner")
+    uiCorner.CornerRadius = UDim.new(0, 5)
+    uiCorner.Parent = element
+end
+
+local openCloseButton
+
+function JayywareLibrary.CreateUI()
+    local ScreenGui = Instance.new("ScreenGui")
+    ScreenGui.Name = "JayywareLibrary"
+    ScreenGui.Parent = game.Players.LocalPlayer.PlayerGui
+
+    openCloseButton = Instance.new("TextButton")
+    openCloseButton.Text = "Open/Close GUI" -- Changeable title
+    openCloseButton.Size = UDim2.new(0, 150, 0, 30)
+    openCloseButton.Position = UDim2.new(1, -160, 0, 0)
+    openCloseButton.BackgroundTransparency = 1
+    openCloseButton.Parent = ScreenGui
+    createUiCorner(openCloseButton)
+
+    local mainFrame = Instance.new("Frame")
+    mainFrame.Size = UDim2.new(0.8, 0, 0.8, 0)
+    mainFrame.Position = UDim2.new(0.1, 0, 0.1, 0)
+    mainFrame.BackgroundTransparency = 0.5
+    mainFrame.BackgroundColor3 = Color3.new(1, 1, 1)
+    mainFrame.Parent = openCloseButton
+    createUiCorner(mainFrame)
+
+    local tabsContainer = Instance.new("ScrollingFrame")
+    tabsContainer.Size = UDim2.new(0.2, 0, 1, 0)
+    tabsContainer.Parent = mainFrame
+    tabsContainer.ScrollBarThickness = 5
+    createUiCorner(tabsContainer)
+
+    local elementsContainer = Instance.new("Frame")
+    elementsContainer.Size = UDim2.new(0.8, -10, 1, -10)
+    elementsContainer.Position = UDim2.new(0.3, 5, 0, 5)
+    elementsContainer.Parent = mainFrame
+    createUiCorner(elementsContainer)
+
+    openCloseButton.MouseButton1Click:Connect(function()
+        mainFrame.Visible = not mainFrame.Visible
+    end)
+end
+
+function JayywareLibrary.createButton(parent, title, callback)
+    local button = Instance.new("TextButton")
+    button.Text = title
+    button.Parent = parent
+    button.Size = UDim2.new(1, 0, 0, 30)
+    createUiCorner(button)
+
+    if callback then
+        button.MouseButton1Click:Connect(callback)
+    end
+end
+
+function JayywareLibrary.createToggleButton(parent, title, callback)
+    local toggleButton = Instance.new("TextButton")
+    toggleButton.Text = title
+    toggleButton.Parent = parent
+    toggleButton.Size = UDim2.new(1, 0, 0, 30)
+    toggleButton.BackgroundColor3 = Color3.new(0, 1, 0) -- Green
+    createUiCorner(toggleButton)
+
+    if callback then
+        toggleButton.MouseButton1Click:Connect(callback)
+    end
+
+    local toggleFrame = Instance.new("Frame")
+    toggleFrame.Size = UDim2.new(0.2, 0, 1, 0)
+    toggleFrame.Parent = toggleButton
+    createUiCorner(toggleFrame)
+
+    local toggleFill = Instance.new("Frame")
+    toggleFill.Size = UDim2.new(1, 0, 1, 0)
+    toggleFill.BackgroundColor3 = Color3.new(0, 1, 0) -- Green
+    toggleFill.Parent = toggleFrame
+
+    return toggleButton
+end
+
+function JayywareLibrary.createParagraph(parent, title, subtitles)
+    local paragraph = Instance.new("TextLabel")
+    paragraph.Text = subtitles
+    paragraph.Parent = parent
+    paragraph.Size = UDim2.new(1, 0, 0, 30)
+    paragraph.TextSize = 14
+    paragraph.TextWrapped = true
+    paragraph.TextXAlignment = Enum.TextXAlignment.Left
+    createUiCorner(paragraph)
+
+    local titleLabel = Instance.new("TextLabel")
+    titleLabel.Text = title
+    titleLabel.Parent = parent
+    titleLabel.Size = UDim2.new(1, 0, 0, 30)
+    titleLabel.TextSize = 14
+    titleLabel.TextWrapped = true
+    titleLabel.TextXAlignment = Enum.TextXAlignment.Left
+    createUiCorner(titleLabel)
+end
+
+function JayywareLibrary.createDropdown(parent, title, button1Text, button2Text, button3Text, callback)
+    local dropdownFrame = Instance.new("Frame")
+    dropdownFrame.Parent = parent
+    dropdownFrame.Size = UDim2.new(1, 0, 0, 30)
+    dropdownFrame.BackgroundTransparency = 0.5
+    dropdownFrame.BackgroundColor3 = Color3.new(1, 1, 1)
+    createUiCorner(dropdownFrame)
+
+    local dropdownButton = Instance.new("TextButton")
+    dropdownButton.Text = title
+    dropdownButton.Parent = dropdownFrame
+    dropdownButton.Size = UDim2.new(0.8, 0, 1, 0)
+    createUiCorner(dropdownButton)
+
+    local buttonsFrame = Instance.new("Frame")
+    buttonsFrame.Size = UDim2.new(1, 0, 0, 30)
+    buttonsFrame.Position = UDim2.new(1, 0, 0, 0)
+    buttonsFrame.Parent = dropdownFrame
+
+    local buttonsContainer = Instance.new("Frame")
+    buttonsContainer.Size = UDim2.new(0, 90, 1, 0)
+    buttonsContainer.Parent = buttonsFrame
+    buttonsContainer.Position = UDim2.new(1, -90, 0, 0)
+    buttonsContainer.BackgroundColor3 = Color3.new(1, 1, 1)
+    createUiCorner(buttonsContainer)
+
+    local button1 = Instance.new("TextButton")
+    button1.Text = button1Text
+    button1.Parent = buttonsContainer
+    button1.Size = UDim2.new(0, 30, 1, 0)
+    createUiCorner(button1)
+
+    local button2 = Instance.new("TextButton")
+    button2.Text = button2Text
+    button2.Parent = buttonsContainer
+    button2.Size = UDim2.new(0, 30, 1, 0)
+    createUiCorner(button2)
+
+    local button3 = Instance.new("TextButton")
+    button3.Text = button3Text
+    button3.Parent = buttonsContainer
+    button3.Size = UDim2.new(0, 30, 1, 0)
+    createUiCorner(button3)
+
+    if callback then
+        button1.MouseButton1Click:Connect(function()
+            callback(button1Text)
+        end)
+        button2.MouseButton1Click:Connect(function()
+            callback(button2Text)
+        end)
+        button3.MouseButton1Click:Connect(function()
+            callback(button3Text)
+        end)
+    end
+
+    local dropdownOpen = false
+    local dropdownHeight = buttonsContainer.Size.Y.Offset
+
+    dropdownButton.MouseButton1Click:Connect(function()
+        dropdownOpen = not dropdownOpen
+        buttonsFrame:TweenPosition(
+            UDim2.new(1, 0, dropdownOpen and 0 or -dropdownHeight, 0),
+            Enum.EasingDirection.Out,
+            Enum.EasingStyle.Quad,
+            0.3,
+            true
+        )
+    end)
+end
+
+return JayywareLibrary
