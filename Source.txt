@@ -15147,7 +15147,7 @@ end
 	 textclickbutton:TweenSize(UDim2.new(0, 32, 0, 33), "Out", "Quint",1,true)
 	 textclickbutton:TweenPosition(UDim2.new(0.48909232, 0, 0, 0), "Out", "Quint",1,true)
 	 wait(0.4)
-	 textclickbutton.Text = "NA"
+	 textclickbutton.Text = "JA"
 	 textclickbutton.Active = true
  gui.draggable(textclickbutton)
  end
