@@ -57,7 +57,7 @@ local EzLauncher = {
 
 --Properties:
 
-EzLauncher.EzLauncher.Name = "EzLauncher"
+EzLauncher.EzLauncher.Name = "JayyHubLauncher"
 EzLauncher.EzLauncher.Parent = game.CoreGui
 EzLauncher.EzLauncher.ZIndexBehavior = Enum.ZIndexBehavior.Sibling
 
