@@ -140,7 +140,7 @@ EzLauncher.StatusName.BackgroundTransparency = 1.000
 EzLauncher.StatusName.Position = UDim2.new(0.5, 0, 0.5, -12)
 EzLauncher.StatusName.Size = UDim2.new(0, 50, 0, 30)
 EzLauncher.StatusName.Font = Enum.Font.SourceSans
-EzLauncher.StatusName.Text = "JayyHub"
+EzLauncher.StatusName.Text = "JayyHubLauncher"
 EzLauncher.StatusName.TextColor3 = Color3.fromRGB(92, 106, 124)
 EzLauncher.StatusName.TextSize = 14.000
 
@@ -172,7 +172,7 @@ EzLauncher.StatusName_2.BackgroundTransparency = 1.000
 EzLauncher.StatusName_2.Position = UDim2.new(0.5, 0, 0.5, -12)
 EzLauncher.StatusName_2.Size = UDim2.new(0, 50, 0, 30)
 EzLauncher.StatusName_2.Font = Enum.Font.SourceSans
-EzLauncher.StatusName_2.Text = "JayywareAdmin"
+EzLauncher.StatusName_2.Text = "IntercomAdmin"
 EzLauncher.StatusName_2.TextColor3 = Color3.fromRGB(92, 106, 124)
 EzLauncher.StatusName_2.TextSize = 14.000
 
@@ -204,7 +204,7 @@ EzLauncher.StatusName_3.BackgroundTransparency = 1.000
 EzLauncher.StatusName_3.Position = UDim2.new(0.5, 0, 0.5, -12)
 EzLauncher.StatusName_3.Size = UDim2.new(0, 50, 0, 30)
 EzLauncher.StatusName_3.Font = Enum.Font.SourceSans
-EzLauncher.StatusName_3.Text = "JayyHubLauncher"
+EzLauncher.StatusName_3.Text = "IntercomLauncher"
 EzLauncher.StatusName_3.TextColor3 = Color3.fromRGB(92, 106, 124)
 EzLauncher.StatusName_3.TextSize = 14.000
 
@@ -490,9 +490,9 @@ end
 --------------------------------------------------------------------
 -- Apply the launcher data: Status
 
-EzLauncher.EzHubStatusFrame.Status.Text = statusData["EzHub"];
-EzLauncher.EzAPIStatusFrame.Status.Text = statusData["EzAPI"];
-EzLauncher.EzLauncherStatusFrame.Status.Text = statusData["EzLauncher"];
+EzLauncher.EzHubStatusFrame.Status.Text = statusData["IntercomHub"];
+EzLauncher.EzAPIStatusFrame.Status.Text = statusData["IntercomAdmin"];
+EzLauncher.EzLauncherStatusFrame.Status.Text = statusData["IntercomLauncher"];
 
 if EzLauncher.EzHubStatusFrame.Status.Text == "Offline" then
 	EzLauncher.EzHubStatusFrame.Status.TextColor3 = Color3.fromRGB(192, 49, 52)
@@ -549,8 +549,8 @@ end)
 --------------------------------------------------------------------
 -- Apply the launcher data: latest version
 
--- List of accouonts that can launch JayyHub regardless of the status
--- Note that the status is just to prevent users from executing JayyHub when it is in testing/broken stages
+-- List of accouonts that can launch Intercom regardless of the status
+-- Note that the status is just to prevent users from executing Intercom when it is in testing/broken stages
 -- Therefore there is no need for any type of secure whitelist
 local allowedOverrideUsers = {
 	2626915991,
@@ -583,7 +583,7 @@ EzLauncher.Launch.MouseButton1Click:Connect(function()
 
 	EzLauncher.Launch.Text = "Launching...";
 
-	-- Apply the theme before launching JayyHub
+	-- Apply the theme before launching Intercom
 	_G.EzHubTheme = themes[selectedTheme];
 	loadstring(game:HttpGet(latestVersion))();
 

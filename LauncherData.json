@@ -1,17 +1,17 @@
 {
     "NewsData": [
-        [1, "03/11/2021: Welcome."],
-        [2, "08/11/2021: From the creators of EzHub."],
-        [3, "10/11/2021: Development"],
-        [4, "11/04/2022: Hello From Jayyware Softworks LLC"]
+        [1, "03/11/2021: Welcome"],
+        [2, "08/11/2021: Created by: Jayyware UI made by: Ez-Industries"],
+        [3, "10/11/2021: Hello from Jayyware"],
+        [4, "11/04/2022: JayyHub 1.0 released ."]
     ],
     "StatusData": {
         "JayyHub": "Online",
-        "JayywareAdmin": "Online",
+        "System": "Online",
         "JayyHubLauncher": "Online"
     },
-    "LatestVersion": "https://raw.githubusercontent.com/reed192512/KeySystem/main/KeySystem.txt",
-    "Theme"
+    "LatestVersion": "https://raw.githubusercontent.com/reed192512/jayyhubcloud/main/JayyHub.lua",
+    "Themes": {
         "Default": {
             "ThemeIndex": 1,
             "Primary": [41, 53, 68],
@@ -21,7 +21,7 @@
             "ScrollBarColor": [14, 21, 30],
             "DefaultTextColor": [255, 255, 255]
         },
-        "Dark": {
+      "Dark": {
             "ThemeIndex": 2,
             "Primary": [25, 25, 25],
             "Secondary": [30, 30, 30],
