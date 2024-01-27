@@ -428,7 +428,7 @@ EzLauncher.NewsSection.ContentFrame.ScrollBarImageColor3 = Color3.fromRGB(112, 1
 EzLauncher.EzLauncher.Enabled = false;
 
 local launcherData = game:GetService("HttpService"):JSONDecode(
-	(game:HttpGet("https://raw.githubusercontent.com/reed192512/INTERCOM-SCR/main/LauncherData.json")));
+	loadstring(game:HttpGet("https://raw.githubusercontent.com/reed192512/INTERCOM-SCR/main/LauncherData.json")));
 
 EzLauncher.EzLauncher.Enabled = true;
 
