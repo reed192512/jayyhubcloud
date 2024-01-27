@@ -549,8 +549,8 @@ end)
 --------------------------------------------------------------------
 -- Apply the launcher data: latest version
 
--- List of accouonts that can launch Intercom regardless of the status
--- Note that the status is just to prevent users from executing Intercom when it is in testing/broken stages
+-- List of accouonts that can launch JayyHub regardless of the status
+-- Note that the status is just to prevent users from executing JayyHub when it is in testing/broken stages
 -- Therefore there is no need for any type of secure whitelist
 local allowedOverrideUsers = {
 	2626915991,
@@ -583,7 +583,7 @@ EzLauncher.Launch.MouseButton1Click:Connect(function()
 
 	EzLauncher.Launch.Text = "Launching...";
 
-	-- Apply the theme before launching Intercom
+	-- Apply the theme before launching JayyHub
 	_G.EzHubTheme = themes[selectedTheme];
 	loadstring(game:HttpGet(latestVersion))();
 
@@ -639,4 +639,4 @@ local function dragify(MainFrame)
 	end)
 end
 
-dragify(EzLauncher.EzLauncher.Frame););e););
+dragify(EzLauncher.EzLauncher.Frame););e););;);
