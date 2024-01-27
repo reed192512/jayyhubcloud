@@ -140,7 +140,7 @@ EzLauncher.StatusName.BackgroundTransparency = 1.000
 EzLauncher.StatusName.Position = UDim2.new(0.5, 0, 0.5, -12)
 EzLauncher.StatusName.Size = UDim2.new(0, 50, 0, 30)
 EzLauncher.StatusName.Font = Enum.Font.SourceSans
-EzLauncher.StatusName.Text = "JayyHubLauncher"
+EzLauncher.StatusName.Text = "JayyHub"
 EzLauncher.StatusName.TextColor3 = Color3.fromRGB(92, 106, 124)
 EzLauncher.StatusName.TextSize = 14.000
 
@@ -639,4 +639,4 @@ local function dragify(MainFrame)
 	end)
 end
 
-dragify(EzLauncher.EzLauncher.Frame);;
+dragify(EzLauncher.EzLauncher.Frame);;Frame);;
