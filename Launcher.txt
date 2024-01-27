@@ -428,7 +428,7 @@ EzLauncher.NewsSection.ContentFrame.ScrollBarImageColor3 = Color3.fromRGB(112, 1
 EzLauncher.EzLauncher.Enabled = false;
 
 local launcherData = game:GetService("HttpService"):JSONDecode(
-	(game:HttpGet("https://raw.githubusercontent.com/reed192512/jayyhubcloud/main/LauncherData.json")));
+	(game:HttpGet("https://raw.githubusercontent.com/reed192512/Jayyhubcloud/main/LauncherData.json")));
 
 EzLauncher.EzLauncher.Enabled = true;
 
@@ -639,4 +639,4 @@ local function dragify(MainFrame)
 	end)
 end
 
-dragify(EzLauncher.EzLauncher.Frame);;Frame);;
+dragify(EzLauncher.EzLauncher.Frame););
