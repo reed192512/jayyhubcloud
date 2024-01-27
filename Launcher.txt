@@ -172,7 +172,7 @@ EzLauncher.StatusName_2.BackgroundTransparency = 1.000
 EzLauncher.StatusName_2.Position = UDim2.new(0.5, 0, 0.5, -12)
 EzLauncher.StatusName_2.Size = UDim2.new(0, 50, 0, 30)
 EzLauncher.StatusName_2.Font = Enum.Font.SourceSans
-EzLauncher.StatusName_2.Text = "IntercomAdmin"
+EzLauncher.StatusName_2.Text = "JayyHubSystem"
 EzLauncher.StatusName_2.TextColor3 = Color3.fromRGB(92, 106, 124)
 EzLauncher.StatusName_2.TextSize = 14.000
 
@@ -204,7 +204,7 @@ EzLauncher.StatusName_3.BackgroundTransparency = 1.000
 EzLauncher.StatusName_3.Position = UDim2.new(0.5, 0, 0.5, -12)
 EzLauncher.StatusName_3.Size = UDim2.new(0, 50, 0, 30)
 EzLauncher.StatusName_3.Font = Enum.Font.SourceSans
-EzLauncher.StatusName_3.Text = "IntercomLauncher"
+EzLauncher.StatusName_3.Text = "JayyHubLauncher"
 EzLauncher.StatusName_3.TextColor3 = Color3.fromRGB(92, 106, 124)
 EzLauncher.StatusName_3.TextSize = 14.000
 
@@ -639,4 +639,4 @@ local function dragify(MainFrame)
 	end)
 end
 
-dragify(EzLauncher.EzLauncher.Frame);
+dragify(EzLauncher.EzLauncher.Frame);;
