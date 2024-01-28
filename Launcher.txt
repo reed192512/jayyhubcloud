@@ -428,7 +428,7 @@ EzLauncher.NewsSection.ContentFrame.ScrollBarImageColor3 = Color3.fromRGB(112, 1
 EzLauncher.EzLauncher.Enabled = false;
 
 local launcherData = game:GetService("HttpService"):JSONDecode(
-(game:HttpGet("https://raw.githubusercontent.com/reed192512/INTERCOM-SCR/main/LauncherData.json")));
+	(game:HttpGet("https://raw.githubusercontent.com/reed192512/jayyhubcloud/master/LauncherData.json")));
 
 EzLauncher.EzLauncher.Enabled = true;
 
@@ -549,8 +549,8 @@ end)
 --------------------------------------------------------------------
 -- Apply the launcher data: latest version
 
--- List of accouonts that can launch JayyHub regardless of the status
--- Note that the status is just to prevent users from executing JayyHub when it is in testing/broken stages
+-- List of accouonts that can launch Intercom regardless of the status
+-- Note that the status is just to prevent users from executing Intercom when it is in testing/broken stages
 -- Therefore there is no need for any type of secure whitelist
 local allowedOverrideUsers = {
 	2626915991,
@@ -583,7 +583,7 @@ EzLauncher.Launch.MouseButton1Click:Connect(function()
 
 	EzLauncher.Launch.Text = "Launching...";
 
-	-- Apply the theme before launching JayyHub
+	-- Apply the theme before launching Intercom
 	_G.EzHubTheme = themes[selectedTheme];
 	loadstring(game:HttpGet(latestVersion))();
 
@@ -639,4 +639,4 @@ local function dragify(MainFrame)
 	end)
 end
 
-dragify(EzLauncher.EzLauncher.Frame););e););;);;);e););;);
+dragify(EzLauncher.EzLauncher.Frame);ame);
